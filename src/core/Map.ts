@@ -880,7 +880,7 @@ export class Map extends Evented {
     }
   }
 
-  _moveStart(zoomChanged: boolean, noMoveStart?: boolean): this {
+  _moveStart(zoomChanged: boolean, noMoveStart?: boolean): Map {
     if (zoomChanged) {
       this.fire('zoomstart');
     }
@@ -890,7 +890,7 @@ export class Map extends Evented {
     return this;
   }
 
-  _move(center: LatLng, zoom?: number, data?: any, supressEvent?: boolean): this {
+  _move(center: LatLng, zoom?: number, data?: any, supressEvent?: boolean): Map {
     if (zoom === undefined) {
       zoom = this._zoom;
     }
@@ -909,7 +909,7 @@ export class Map extends Evented {
     return this;
   }
 
-  _moveEnd(zoomChanged: boolean): this {
+  _moveEnd(zoomChanged: boolean): Map {
     if (zoomChanged) {
       this.fire('zoomend');
     }
@@ -1235,7 +1235,7 @@ export class Map extends Evented {
 
   _tryAnimatedPan(center: LatLng, options: any): boolean {
     const offset = this._getCenterOffset(center)._trunc();
-    if ((options && options.animate) !== true && !this.getSize().contains(offset)) {
+    if ((options && options.animate) !== true && !this.getSize().contains(offset as any)) {
       return false;
     }
     this.panBy(offset, options);
@@ -1512,105 +1512,6 @@ function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate
 function _onZoomTransitionEnd() {
 	throw new Error('Function not implemented.');
 }
-function _checkIfLoaded() {
-	throw new Error('Function not implemented.');
-}
-function _initEvents(remove: boolean) {
-	throw new Error('Function not implemented.');
-}
-function _onScroll() {
-	throw new Error('Function not implemented.');
-}
-function _onMoveEnd() {
-	throw new Error('Function not implemented.');
-}
-function _findEventTargets(e: any, type: string): any[] {
-	throw new Error('Function not implemented.');
-}
-function _isClickDisabled(el: HTMLElement): boolean {
-	throw new Error('Function not implemented.');
-}
-function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
-	throw new Error('Function not implemented.');
-}
-function _draggableMoved(obj: any): boolean {
-	throw new Error('Function not implemented.');
-}
-function _clearHandlers() {
-	throw new Error('Function not implemented.');
-}
-function _getMapPanePos(): Point {
-	throw new Error('Function not implemented.');
-}
-function _moved(): boolean {
-	throw new Error('Function not implemented.');
-}
-function _getTopLeftPoint(center: LatLng, zoom: number): Point {
-	throw new Error('Function not implemented.');
-}
-function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
-	throw new Error('Function not implemented.');
-}
-function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
-	throw new Error('Function not implemented.');
-}
-function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
-	throw new Error('Function not implemented.');
-}
-function _getCenterLayerPoint(): Point {
-	throw new Error('Function not implemented.');
-}
-function _getCenterOffset(latlng: LatLng): Point {
-	throw new Error('Function not implemented.');
-}
-function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
-	throw new Error('Function not implemented.');
-}
-function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
-	throw new Error('Function not implemented.');
-}
-function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
-	throw new Error('Function not implemented.');
-}
-function _rebound(left: number, right: number): number {
-	throw new Error('Function not implemented.');
-}
-function _limitZoom(zoom: number): number {
-	throw new Error('Function not implemented.');
-}
-function _onPanTransitionStep() {
-	throw new Error('Function not implemented.');
-}
-function _onPanTransitionEnd() {
-	throw new Error('Function not implemented.');
-}
-function _tryAnimatedPan(center: LatLng, options: any): boolean {
-	throw new Error('Function not implemented.');
-}
-function _createAnimProxy() {
-	throw new Error('Function not implemented.');
-}
-function _destroyAnimProxy() {
-	throw new Error('Function not implemented.');
-}
-function _animMoveEnd() {
-	throw new Error('Function not implemented.');
-}
-function _catchTransitionEnd(e: any) {
-	throw new Error('Function not implemented.');
-}
-function _nothingToAnimate(): boolean {
-	throw new Error('Function not implemented.');
-}
-function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
-	throw new Error('Function not implemented.');
-}
-function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
-	throw new Error('Function not implemented.');
-}
-function _onZoomTransitionEnd() {
-	throw new Error('Function not implemented.');
-}
 function _rawPanBy(offset: Point) {
 	throw new Error('Function not implemented.');
 }
@@ -1738,129 +1639,6 @@ function _onResize() {
 	throw new Error('Function not implemented.');
 }
 function _stop() {
-	throw new Error('Function not implemented.');
-}
-function _rawPanBy(offset: Point) {
-	throw new Error('Function not implemented.');
-}
-function _initLayout() {
-	throw new Error('Function not implemented.');
-}
-function _initContainer(id: string | HTMLElement) {
-	throw new Error('Function not implemented.');
-}
-function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
-	throw new Error('Function not implemented.');
-}
-function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
-	throw new Error('Function not implemented.');
-}
-function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
-	throw new Error('Function not implemented.');
-}
-function _moveEnd(zoomChanged: boolean): Map {
-	throw new Error('Function not implemented.');
-}
-function _initPanes() {
-	throw new Error('Function not implemented.');
-}
-function _checkIfLoaded() {
-	throw new Error('Function not implemented.');
-}
-function _initEvents(remove: boolean) {
-	throw new Error('Function not implemented.');
-}
-function _onScroll() {
-	throw new Error('Function not implemented.');
-}
-function _onMoveEnd() {
-	throw new Error('Function not implemented.');
-}
-function _findEventTargets(e: any, type: string): any[] {
-	throw new Error('Function not implemented.');
-}
-function _isClickDisabled(el: HTMLElement): boolean {
-	throw new Error('Function not implemented.');
-}
-function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
-	throw new Error('Function not implemented.');
-}
-function _draggableMoved(obj: any): boolean {
-	throw new Error('Function not implemented.');
-}
-function _clearHandlers() {
-	throw new Error('Function not implemented.');
-}
-function _getMapPanePos(): Point {
-	throw new Error('Function not implemented.');
-}
-function _moved(): boolean {
-	throw new Error('Function not implemented.');
-}
-function _getTopLeftPoint(center: LatLng, zoom: number): Point {
-	throw new Error('Function not implemented.');
-}
-function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
-	throw new Error('Function not implemented.');
-}
-function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
-	throw new Error('Function not implemented.');
-}
-function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
-	throw new Error('Function not implemented.');
-}
-function _getCenterLayerPoint(): Point {
-	throw new Error('Function not implemented.');
-}
-function _getCenterOffset(latlng: LatLng): Point {
-	throw new Error('Function not implemented.');
-}
-function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
-	throw new Error('Function not implemented.');
-}
-function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
-	throw new Error('Function not implemented.');
-}
-function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
-	throw new Error('Function not implemented.');
-}
-function _rebound(left: number, right: number): number {
-	throw new Error('Function not implemented.');
-}
-function _limitZoom(zoom: number): number {
-	throw new Error('Function not implemented.');
-}
-function _onPanTransitionStep() {
-	throw new Error('Function not implemented.');
-}
-function _onPanTransitionEnd() {
-	throw new Error('Function not implemented.');
-}
-function _tryAnimatedPan(center: LatLng, options: any): boolean {
-	throw new Error('Function not implemented.');
-}
-function _createAnimProxy() {
-	throw new Error('Function not implemented.');
-}
-function _destroyAnimProxy() {
-	throw new Error('Function not implemented.');
-}
-function _animMoveEnd() {
-	throw new Error('Function not implemented.');
-}
-function _catchTransitionEnd(e: any) {
-	throw new Error('Function not implemented.');
-}
-function _nothingToAnimate(): boolean {
-	throw new Error('Function not implemented.');
-}
-function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
-	throw new Error('Function not implemented.');
-}
-function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
-	throw new Error('Function not implemented.');
-}
-function _onZoomTransitionEnd() {
 	throw new Error('Function not implemented.');
 }
 function _rawPanBy(offset: Point) {
@@ -5164,4 +4942,2490 @@ function _getCenterOffset(latlng: LatLng): Point {
 	throw new Error('Function not implemented.');
 }
 function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
-	throw new Error('Function not. I will now create the `src/layers/Layer.ts` file. This file will define the abstract base layer class that all other layers will extend.
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _nothingToAnimate(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedZoom(center: LatLng, zoom: number, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _animateZoom(center: LatLng, zoom: number, startAnim: boolean, noUpdate: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onZoomTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _onResize() {
+	throw new Error('Function not implemented.');
+}
+function _stop() {
+	throw new Error('Function not implemented.');
+}
+function _rawPanBy(offset: Point) {
+	throw new Error('Function not implemented.');
+}
+function _initLayout() {
+	throw new Error('Function not implemented.');
+}
+function _initContainer(id: string | HTMLElement) {
+	throw new Error('Function not implemented.');
+}
+function _resetView(center: LatLng, zoom: number, noMoveStart: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _moveStart(zoomChanged: boolean, noMoveStart: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _move(center: LatLng, zoom: number, data: any, supressEvent: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _moveEnd(zoomChanged: boolean): Map {
+	throw new Error('Function not implemented.');
+}
+function _initPanes() {
+	throw new Error('Function not implemented.');
+}
+function _checkIfLoaded() {
+	throw new Error('Function not implemented.');
+}
+function _initEvents(remove: boolean) {
+	throw new Error('Function not implemented.');
+}
+function _onScroll() {
+	throw new Error('Function not implemented.');
+}
+function _onMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _findEventTargets(e: any, type: string): any[] {
+	throw new Error('Function not implemented.');
+}
+function _isClickDisabled(el: HTMLElement): boolean {
+	throw new Error('Function not implemented.');
+}
+function _fireDOMEvent(e: any, type: string, canvasTargets: any[]) {
+	throw new Error('Function not implemented.');
+}
+function _draggableMoved(obj: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _clearHandlers() {
+	throw new Error('Function not implemented.');
+}
+function _getMapPanePos(): Point {
+	throw new Error('Function not implemented.');
+}
+function _moved(): boolean {
+	throw new Error('Function not implemented.');
+}
+function _getTopLeftPoint(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _getNewPixelOrigin(center: LatLng, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngToNewLayerPoint(latlng: LatLng, zoom: number, center: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _latLngBoundsToNewLayerBounds(latLngBounds: LatLngBounds, zoom: number, center: LatLng): Bounds {
+	throw new Error('Function not implemented.');
+}
+function _getCenterLayerPoint(): Point {
+	throw new Error('Function not implemented.');
+}
+function _getCenterOffset(latlng: LatLng): Point {
+	throw new Error('Function not implemented.');
+}
+function _limitCenter(center: LatLng, zoom: number, bounds: LatLngBounds): LatLng {
+	throw new Error('Function not implemented.');
+}
+function _limitOffset(offset: Point, bounds: LatLngBounds): Point {
+	throw new Error('Function not implemented.');
+}
+function _getBoundsOffset(pxBounds: Bounds, maxBounds: LatLngBounds, zoom: number): Point {
+	throw new Error('Function not implemented.');
+}
+function _rebound(left: number, right: number): number {
+	throw new Error('Function not implemented.');
+}
+function _limitZoom(zoom: number): number {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionStep() {
+	throw new Error('Function not implemented.');
+}
+function _onPanTransitionEnd() {
+	throw new Error('Function not implemented.');
+}
+function _tryAnimatedPan(center: LatLng, options: any): boolean {
+	throw new Error('Function not implemented.');
+}
+function _createAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _destroyAnimProxy() {
+	throw new Error('Function not implemented.');
+}
+function _animMoveEnd() {
+	throw new Error('Function not implemented.');
+}
+function _catchTransitionEnd(e: any) {
+	throw new Error('Function not implemented.');
+}
+function _
