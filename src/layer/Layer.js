@@ -1,0 +1,189 @@
+import {
+    Evented
+} from '../core/Events.js';
+import {
+    stamp,
+    isArray
+} from '../core/Util.js';
+
+export const Layer = Evented.extend({
+    options: {
+        pane: 'overlayPane',
+        attribution: null,
+        bubblingMouseEvents: true
+    },
+
+    addTo: function(map) {
+        map.addLayer(this);
+        return this;
+    },
+
+    remove: function() {
+        return this.removeFrom(this._map || this._mapToAdd);
+    },
+
+    removeFrom: function(obj) {
+        if (obj) {
+            obj.removeLayer(this);
+        }
+        return this;
+    },
+
+    getPane: function(name) {
+        return this._map.getPane(name ? (this.options[name] || name) : this.options.pane);
+    },
+
+    addInteractiveTarget: function(targetEl) {
+        this._map._targets[stamp(targetEl)] = this;
+        return this;
+    },
+
+    removeInteractiveTarget: function(targetEl) {
+        delete this._map._targets[stamp(targetEl)];
+        return this;
+    },
+
+    getAttribution: function() {
+        return this.options.attribution;
+    },
+
+    _layerAdd: function(e) {
+        var map = e.target;
+
+        if (!map.hasLayer(this)) {
+            return;
+        }
+
+        this._map = map;
+        this._zoomAnimated = map._zoomAnimated;
+
+        if (this.getEvents) {
+            var events = this.getEvents();
+            map.on(events, this);
+            this.once('remove', function() {
+                map.off(events, this);
+            }, this);
+        }
+
+        this.onAdd(map);
+        this.fire('add');
+        map.fire('layeradd', {
+            layer: this
+        });
+    }
+});
+
+import {
+    Map
+} from '../map/Map.js';
+
+Map.include({
+    addLayer: function(layer) {
+        if (!layer._layerAdd) {
+            throw new Error('The provided object is not a Layer.');
+        }
+
+        var id = stamp(layer);
+        if (this._layers[id]) {
+            return this;
+        }
+        this._layers[id] = layer;
+
+        layer._mapToAdd = this;
+
+        if (layer.beforeAdd) {
+            layer.beforeAdd(this);
+        }
+
+        this.whenReady(layer._layerAdd, layer);
+
+        return this;
+    },
+
+    removeLayer: function(layer) {
+        var id = stamp(layer);
+
+        if (!this._layers[id]) {
+            return this;
+        }
+
+        if (this._loaded) {
+            layer.onRemove(this);
+        }
+
+        delete this._layers[id];
+
+        if (this._loaded) {
+            this.fire('layerremove', {
+                layer: layer
+            });
+            layer.fire('remove');
+        }
+
+        layer._map = layer._mapToAdd = null;
+
+        return this;
+    },
+
+    hasLayer: function(layer) {
+        return stamp(layer) in this._layers;
+    },
+
+    eachLayer: function(method, context) {
+        for (var i in this._layers) {
+            method.call(context, this._layers[i]);
+        }
+        return this;
+    },
+
+    _addLayers: function(layers) {
+        layers = layers ? (isArray(layers) ? layers : [layers]) : [];
+
+        for (var i = 0, len = layers.length; i < len; i++) {
+            this.addLayer(layers[i]);
+        }
+    },
+
+    _addZoomLimit: function(layer) {
+        if (!isNaN(layer.options.maxZoom) || !isNaN(layer.options.minZoom)) {
+            this._zoomBoundLayers[stamp(layer)] = layer;
+            this._updateZoomLevels();
+        }
+    },
+
+    _removeZoomLimit: function(layer) {
+        var id = stamp(layer);
+
+        if (this._zoomBoundLayers[id]) {
+            delete this._zoomBoundLayers[id];
+            this._updateZoomLevels();
+        }
+    },
+
+    _updateZoomLevels: function() {
+        var minZoom = Infinity,
+            maxZoom = -Infinity,
+            oldZoomSpan = this._getZoomSpan();
+
+        for (var i in this._zoomBoundLayers) {
+            var options = this._zoomBoundLayers[i].options;
+
+            minZoom = options.minZoom === undefined ? minZoom : Math.min(minZoom, options.minZoom);
+            maxZoom = options.maxZoom === undefined ? maxZoom : Math.max(maxZoom, options.maxZoom);
+        }
+
+        this._layersMaxZoom = maxZoom === -Infinity ? undefined : maxZoom;
+        this._layersMinZoom = minZoom === Infinity ? undefined : minZoom;
+
+        if (oldZoomSpan !== this._getZoomSpan()) {
+            this.fire('zoomlevelschange');
+        }
+
+        if (this.options.maxZoom === undefined && this._layersMaxZoom && this.getZoom() > this._layersMaxZoom) {
+            this.setZoom(this._layersMaxZoom);
+        }
+        if (this.options.minZoom === undefined && this._layersMinZoom && this.getZoom() < this._layersMinZoom) {
+            this.setZoom(this._layersMinZoom);
+        }
+    }
+});
