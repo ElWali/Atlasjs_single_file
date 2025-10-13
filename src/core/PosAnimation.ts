@@ -13,6 +13,7 @@ export class PosAnimation extends Evented {
   _from: any;
   _to: any;
   _startTime: any;
+  _timer: any;
 
   constructor() {
     super();
