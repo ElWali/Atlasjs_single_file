@@ -1,27 +1,14 @@
-from playwright.sync_api import sync_playwright
-import os
+from playwright.sync_api import sync_playwright, expect
 
-def run():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+def run(playwright):
+    browser = playwright.chromium.launch(headless=True)
+    page = browser.new_page()
+    page.goto('file:///app/Index.html')
+    page.wait_for_timeout(15000) # wait for 15 seconds
+    print(page.content())
+    expect(page.locator("#map")).to_be_visible()
+    page.screenshot(path="jules-scratch/verification/verification.png")
+    browser.close()
 
-        # Get the absolute path to Index.html
-        html_file_path = os.path.abspath('Index.html')
-
-        # Navigate to the local HTML file
-        page.goto(f'file://{html_file_path}')
-
-        # Wait for the map to load
-        page.wait_for_selector('.atlas-tile-loaded')
-
-        # Wait for the marker to appear
-        page.wait_for_selector('.atlas-marker-icon')
-
-        # Take a screenshot
-        page.screenshot(path='jules-scratch/verification/verification.png')
-
-        browser.close()
-
-if __name__ == '__main__':
-    run()
+with sync_playwright() as playwright:
+    run(playwright)

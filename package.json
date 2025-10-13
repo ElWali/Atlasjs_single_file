@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "circular-dependency-plugin": "^5.2.2",
     "madge": "^8.0.0",
     "rollup": "^4.9.6",
