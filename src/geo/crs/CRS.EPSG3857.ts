@@ -1,6 +1,7 @@
 import { Earth } from './CRS.Earth';
-import { LatLng, toTransformation } from '../Geo';
+import { LatLng } from '../LatLng';
 import { Point } from '../Point';
+import { Transformation, toTransformation } from '../Geo';
 
 export const EPSG3857 = {
   ...Earth,

@@ -10,6 +10,8 @@ import { Browser } from '../utils/Browser';
 import { PosAnimation } from './PosAnimation';
 import { EPSG3857 } from '../geo/crs/CRS.EPSG3857';
 import { Zoom } from '../controls/Control.Zoom';
+import { Layer } from '../layers/Layer';
+import { SVG } from '../renderers/SVG';
 
 export class Map extends Evented {
   _handlers: any[];
@@ -105,9 +107,16 @@ export class Map extends Evented {
   _addLayers(layers: any): void {
     layers = layers ? (Array.isArray(layers) ? layers : [layers]) : [];
     for (let i = 0, len = layers.length; i < len; i++) {
-      // @ts-ignore
       this.addLayer(layers[i]);
     }
+  }
+
+  addLayer(layer: Layer): this {
+    this.layers.add(layer);
+    if (layer.onAdd) {
+      layer.onAdd(this);
+    }
+    return this;
   }
 
   _setView(center: LatLng, zoom?: number, options?: any): this {
@@ -682,7 +691,7 @@ export class Map extends Evented {
       this.project(se, zoom),
       this.project(nw, zoom),
     ).getSize();
-    const snap = Browser.any3d ? (this as any).options.zoomSnap : 1;
+    const snap = this.options.zoomSnap;
     const scalex = size.x / boundsSize.x;
     const scaley = size.y / boundsSize.y;
     const scale = inside ? Math.max(scalex, scaley) : Math.min(scalex, scaley);
@@ -7420,12 +7429,3 @@ function _createAnimProxy() {
 	throw new Error('Function not implemented.');
 }
 function _destroyAnimProxy() {
-	throw new Error('Function not implemented.');
-}
-function _animMoveEnd() {
-	throw new Error('Function not implemented.');
-}
-function _catchTransitionEnd(e: any) {
-	throw new Error('Function not implemented.');
-}
-function _

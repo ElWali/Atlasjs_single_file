@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { formatNum, isArray } from '../utils/Util';
 import { Earth } from './crs/CRS.Earth';
-import { LatLngBounds } from './LatLngBounds';
+import { LatLngBounds, toLatLngBounds } from './LatLngBounds';
 
 export class LatLng {
   lat: number;
