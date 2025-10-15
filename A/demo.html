@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas.js Demo</title>
+    <link rel="stylesheet" href="Atlasjs-source.css">
+</head>
+<body>
+
+<div id="map" style="height: 500px;"></div>
+
+<script type="module">
+    import { map, tileLayer, marker } from './Atlasjs-source.js';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const myMap = map('map').setView([34.020882, -6.84165], 13);
+
+        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(myMap);
+
+        marker([34.020882, -6.84165]).addTo(myMap)
+            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+            .openPopup();
+    });
+</script>
+
+</body>
+</html>

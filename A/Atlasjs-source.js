@@ -1,10 +1,6 @@
 /* Atlas.js is a lightweight JavaScript library for mobile-friendly interactive maps 🇲🇦 */
 /*  © ElWali */
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.atlas = {}));
-})(this, (function (exports) { 'use strict';
+'use strict';
   var version = "0.0.1";
   function extend(dest) {
 	var i, j, len, src;
@@ -1008,7 +1004,7 @@
 			p = points[j];
 			str += (j ? 'L' : 'M') + p.x + ' ' + p.y;
 		}
-		str += closed ? (Browser.svg ? 'z' : 'x') : '';
+		str += closed ? 'z' : '';
 	}
 	return str || 'M0 0';
   }
@@ -1081,58 +1077,21 @@
   function userAgentContains(str) {
 	return navigator.userAgent.toLowerCase().indexOf(str) >= 0;
   }
-  var Browser = {
-	ie: ie,
-	ielt9: ielt9,
-	edge: edge,
-	webkit: webkit,
-	android: android,
-	android23: android23,
-	androidStock: androidStock,
-	opera: opera,
-	chrome: chrome,
-	gecko: gecko,
-	safari: safari,
-	phantom: phantom,
-	opera12: opera12,
-	win: win,
-	ie3d: ie3d,
-	webkit3d: webkit3d,
-	gecko3d: gecko3d,
-	any3d: any3d,
-	mobile: mobile,
-	mobileWebkit: mobileWebkit,
-	mobileWebkit3d: mobileWebkit3d,
-	msPointer: msPointer,
-	pointer: pointer,
-	touch: touch,
-	touchNative: touchNative,
-	mobileOpera: mobileOpera,
-	mobileGecko: mobileGecko,
-	retina: retina,
-	passiveEvents: passiveEvents,
-	canvas: canvas$1,
-	svg: svg$1,
-	vml: vml,
-	inlineSvg: inlineSvg,
-	mac: mac,
-	linux: linux
-  };
-  var POINTER_DOWN =   Browser.msPointer ? 'MSPointerDown'   : 'pointerdown';
-  var POINTER_MOVE =   Browser.msPointer ? 'MSPointerMove'   : 'pointermove';
-  var POINTER_UP =     Browser.msPointer ? 'MSPointerUp'     : 'pointerup';
-  var POINTER_CANCEL = Browser.msPointer ? 'MSPointerCancel' : 'pointercancel';
+  var POINTER_DOWN = 'pointerdown';
+  var POINTER_MOVE = 'pointermove';
+  var POINTER_UP = 'pointerup';
+  var POINTER_CANCEL = 'pointercancel';
   var pEvent = {
-	touchstart  : POINTER_DOWN,
-	touchmove   : POINTER_MOVE,
-	touchend    : POINTER_UP,
-	touchcancel : POINTER_CANCEL
+	touchstart: POINTER_DOWN,
+	touchmove: POINTER_MOVE,
+	touchend: POINTER_UP,
+	touchcancel: POINTER_CANCEL
   };
   var handle = {
-	touchstart  : _onPointerStart,
-	touchmove   : _handlePointer,
-	touchend    : _handlePointer,
-	touchcancel : _handlePointer
+	touchstart: _onPointerStart,
+	touchmove: _handlePointer,
+	touchend: _handlePointer,
+	touchcancel: _handlePointer
   };
   var _pointers = {};
   var _pointerDocListener = false;
@@ -1373,19 +1332,12 @@
   function setTransform(el, offset, scale) {
 	var pos = offset || new Point(0, 0);
 	el.style[TRANSFORM] =
-		(Browser.ie3d ?
-			'translate(' + pos.x + 'px,' + pos.y + 'px)' :
-			'translate3d(' + pos.x + 'px,' + pos.y + 'px,0)') +
+		'translate3d(' + pos.x + 'px,' + pos.y + 'px,0)' +
 		(scale ? ' scale(' + scale + ')' : '');
   }
   function setPosition(el, point) {
 	el._atlas_pos = point;
-	if (Browser.any3d) {
-		setTransform(el, point);
-	} else {
-		el.style.left = point.x + 'px';
-		el.style.top = point.y + 'px';
-	}
+	setTransform(el, point);
   }
   function getPosition(el) {
 	return el._atlas_pos || new Point(0, 0);
@@ -1543,13 +1495,9 @@
 		return fn.call(context || obj, e || window.event);
 	};
 	var originalHandler = handler;
-	if (!Browser.touchNative && Browser.pointer && type.indexOf('touch') === 0) {
-		handler = addPointerListener(obj, type, handler);
-	} else if (Browser.touch && (type === 'dblclick')) {
-		handler = addDoubleTapListener(obj, handler);
-	} else if ('addEventListener' in obj) {
+	if ('addEventListener' in obj) {
 		if (type === 'touchstart' || type === 'touchmove' || type === 'wheel' ||  type === 'mousewheel') {
-			obj.addEventListener(mouseSubst[type] || type, handler, Browser.passiveEvents ? {passive: false} : false);
+			obj.addEventListener(mouseSubst[type] || type, handler, {passive: false});
 		} else if (type === 'mouseenter' || type === 'mouseleave') {
 			handler = function (e) {
 				e = e || window.event;
@@ -1571,11 +1519,7 @@
 	id = id || type + stamp(fn) + (context ? '_' + stamp(context) : '');
 	var handler = obj[eventsKey] && obj[eventsKey][id];
 	if (!handler) { return this; }
-	if (!Browser.touchNative && Browser.pointer && type.indexOf('touch') === 0) {
-		removePointerListener(obj, type, handler);
-	} else if (Browser.touch && (type === 'dblclick')) {
-		removeDoubleTapListener(obj, handler);
-	} else if ('removeEventListener' in obj) {
+	if ('removeEventListener' in obj) {
 		obj.removeEventListener(mouseSubst[type] || type, handler, false);
 	} else {
 		obj.detachEvent('on' + type, handler);
@@ -1637,20 +1581,8 @@
 		(e.clientY - offset.top) / scale.y - container.clientTop
 	);
   }
-  var wheelPxFactor =
-	(Browser.linux && Browser.chrome) ? window.devicePixelRatio :
-	Browser.mac ? window.devicePixelRatio * 3 :
-	window.devicePixelRatio > 0 ? 2 * window.devicePixelRatio : 1;
   function getWheelDelta(e) {
-	return (Browser.edge) ? e.wheelDeltaY / 2 :
-	       (e.deltaY && e.deltaMode === 0) ? -e.deltaY / wheelPxFactor :
-	       (e.deltaY && e.deltaMode === 1) ? -e.deltaY * 20 :
-	       (e.deltaY && e.deltaMode === 2) ? -e.deltaY * 60 :
-	       (e.deltaX || e.deltaZ) ? 0 :
-	       e.wheelDelta ? (e.wheelDeltaY || e.wheelDelta) / 2 :
-	       (e.detail && Math.abs(e.detail) < 32765) ? -e.detail * 20 :
-	       e.detail ? e.detail / -32765 * 60 :
-	       0;
+	return e.deltaY;
   }
   function isExternalTarget(el, e) {
 	var related = e.relatedTarget;
@@ -1768,8 +1700,7 @@
 			this.setView(toLatLng(options.center), options.zoom, {reset: true});
 		}
 		this.callInitHooks();
-		this._zoomAnimated = TRANSITION && Browser.any3d && !Browser.mobileOpera &&
-				this.options.zoomAnimation;
+		this._zoomAnimated = TRANSITION && this.options.zoomAnimation;
 		if (this._zoomAnimated) {
 			this._createAnimProxy();
 			on(this._proxy, TRANSITION_END, this._catchTransitionEnd, this);
@@ -1805,11 +1736,11 @@
 		return this.setView(this.getCenter(), zoom, {zoom: options});
 	},
 	zoomIn: function (delta, options) {
-		delta = delta || (Browser.any3d ? this.options.zoomDelta : 1);
+		delta = delta || this.options.zoomDelta;
 		return this.setZoom(this._zoom + delta, options);
 	},
 	zoomOut: function (delta, options) {
-		delta = delta || (Browser.any3d ? this.options.zoomDelta : 1);
+		delta = delta || this.options.zoomDelta;
 		return this.setZoom(this._zoom - delta, options);
 	},
 	setZoomAround: function (latlng, zoom, options) {
@@ -1888,7 +1819,7 @@
 	},
 	flyTo: function (targetCenter, targetZoom, options) {
 		options = options || {};
-		if (options.animate === false || !Browser.any3d) {
+		if (options.animate === false) {
 			return this.setView(targetCenter, targetZoom, options);
 		}
 		this._stop();
@@ -2214,7 +2145,7 @@
 		    se = bounds.getSouthEast(),
 		    size = this.getSize().subtract(padding),
 		    boundsSize = toBounds(this.project(se, zoom), this.project(nw, zoom)).getSize(),
-		    snap = Browser.any3d ? this.options.zoomSnap : 1,
+		    snap = this.options.zoomSnap,
 		    scalex = size.x / boundsSize.x,
 		    scaley = size.y / boundsSize.y,
 		    scale = inside ? Math.max(scalex, scaley) : Math.min(scalex, scaley);
@@ -2324,13 +2255,8 @@
 	},
 	_initLayout: function () {
 		var container = this._container;
-		this._fadeAnimated = this.options.fadeAnimation && Browser.any3d;
-		addClass(container, 'atlas-container' +
-			(Browser.touch ? ' atlas-touch' : '') +
-			(Browser.retina ? ' atlas-retina' : '') +
-			(Browser.ielt9 ? ' atlas-oldie' : '') +
-			(Browser.safari ? ' atlas-safari' : '') +
-			(this._fadeAnimated ? ' atlas-fade-anim' : ''));
+		this._fadeAnimated = this.options.fadeAnimation;
+		addClass(container, 'atlas-container');
 		var position = getStyle(container, 'position');
 		if (position !== 'absolute' && position !== 'relative' && position !== 'fixed' && position !== 'sticky') {
 			container.style.position = 'relative';
@@ -2437,9 +2363,7 @@
 		if (this.options.trackResize) {
 			onOff(window, 'resize', this._onResize, this);
 		}
-		if (Browser.any3d && this.options.transform3DLimit) {
-			(remove ? this.off : this.on).call(this, 'moveend', this._onMoveEnd);
-		}
+		(remove ? this.off : this.on).call(this, 'moveend', this._onMoveEnd);
 	},
 	_onResize: function () {
 		cancelAnimFrame(this._resizeRequest);
@@ -2625,7 +2549,7 @@
 	_limitZoom: function (zoom) {
 		var min = this.getMinZoom(),
 		    max = this.getMaxZoom(),
-		    snap = Browser.any3d ? this.options.zoomSnap : 1;
+		    snap = this.options.zoomSnap;
 		if (snap) {
 			zoom = Math.round(zoom / snap) * snap;
 		}
@@ -3258,7 +3182,7 @@
  var Attribution = Control.extend({
 	options: {
 		position: 'bottomright',
-		prefix: '<a href="https://atlasjs.com" title="A JavaScript library for interactive maps">' + (Browser.inlineSvg ? MoroccanFlag + ' ' : '') + 'Atlas</a>'
+		prefix: '<a href="https://atlasjs.com" title="A JavaScript library for interactive maps">Atlas</a>'
 	},
 	initialize: function (options) {
 		setOptions(this, options);
@@ -3372,7 +3296,7 @@
 	return this;
   };
   var Mixin = {Events: Events};
-  var START = Browser.touch ? 'touchstart mousedown' : 'mousedown';
+  var START = 'touchstart mousedown';
   var Draggable = Evented.extend({
 	options: {
 		clickTolerance: 3
@@ -4163,7 +4087,7 @@
 		return el;
 	},
 	_getIconUrl: function (name) {
-		return Browser.retina && this.options[name + 'RetinaUrl'] || this.options[name + 'Url'];
+		return this.options[name + 'Url'];
 	}
   });
   function icon(options) {
@@ -6228,7 +6152,7 @@
 	options: {
 		tileSize: 256,
 		opacity: 1,
-		updateWhenIdle: Browser.mobile,
+		updateWhenIdle: true,
 		updateWhenZooming: true,
 		updateInterval: 200,
 		zIndex: 1,
@@ -6349,7 +6273,6 @@
 	},
 	_updateOpacity: function () {
 		if (!this._map) { return; }
-		if (Browser.ielt9) { return; }
 		setOpacity(this._container, this.options.opacity);
 		var now = +new Date(),
 		    nextFrame = false,
@@ -6562,11 +6485,7 @@
 		var scale = this._map.getZoomScale(zoom, level.zoom),
 		    translate = level.origin.multiplyBy(scale)
 		        .subtract(this._map._getNewPixelOrigin(center, zoom)).round();
-		if (Browser.any3d) {
-			setTransform(level.el, translate, scale);
-		} else {
-			setPosition(level.el, translate);
-		}
+		setTransform(level.el, translate, scale);
 	},
 	_resetGrid: function () {
 		var map = this._map,
@@ -6707,9 +6626,6 @@
 		tile.style.height = tileSize.y + 'px';
 		tile.onselectstart = falseFn;
 		tile.onmousemove = falseFn;
-		if (Browser.ielt9 && this.options.opacity < 1) {
-			setOpacity(tile, this.options.opacity);
-		}
 	},
 	_addTile: function (coords, container) {
 		var tilePos = this._getTilePos(coords),
@@ -6761,11 +6677,7 @@
 		if (this._noTilesToLoad()) {
 			this._loading = false;
 			this.fire('load');
-			if (Browser.ielt9 || !this._map._fadeAnimated) {
-				requestAnimFrame(this._pruneTiles, this);
-			} else {
-				setTimeout(bind(this._pruneTiles, this), 250);
-			}
+			requestAnimFrame(this._pruneTiles, this);
 		}
 	},
 	_getTilePos: function (coords) {
@@ -6810,17 +6722,7 @@
 	initialize: function (url, options) {
 		this._url = url;
 		options = setOptions(this, options);
-		if (options.detectRetina && Browser.retina && options.maxZoom > 0) {
-			options.tileSize = Math.floor(options.tileSize / 2);
-			if (!options.zoomReverse) {
-				options.zoomOffset++;
-				options.maxZoom = Math.max(options.minZoom, options.maxZoom - 1);
-			} else {
-				options.zoomOffset--;
-				options.minZoom = Math.min(options.maxZoom, options.minZoom + 1);
-			}
-			options.minZoom = Math.max(0, options.minZoom);
-		} else if (!options.zoomReverse) {
+		if (!options.zoomReverse) {
 			options.maxZoom = Math.max(options.minZoom, options.maxZoom);
 		} else {
 			options.minZoom = Math.min(options.maxZoom, options.minZoom);
@@ -6856,7 +6758,7 @@
 	},
 	getTileUrl: function (coords) {
 		var data = {
-			r: Browser.retina ? '@2x' : '',
+			r: '',
 			s: this._getSubdomain(coords),
 			x: coords.x,
 			y: coords.y,
@@ -6872,11 +6774,7 @@
 		return template(this._url, extend(data, this.options));
 	},
 	_tileOnLoad: function (done, tile) {
-		if (Browser.ielt9) {
-			setTimeout(bind(done, this, null, tile), 0);
-		} else {
-			done(null, tile);
-		}
+		done(null, tile);
 	},
 	_tileOnError: function (done, tile, e) {
 		var errorUrl = this.options.errorTileUrl;
@@ -6961,7 +6859,7 @@
 			}
 		}
 		options = setOptions(this, options);
-		var realRetina = options.detectRetina && Browser.retina ? 2 : 1;
+		var realRetina = 1;
 		var tileSize = this.getTileSize();
 		wmsParams.width = tileSize.x * realRetina;
 		wmsParams.height = tileSize.y * realRetina;
@@ -7047,11 +6945,7 @@
 		    currentCenterPoint = this._map.project(this._center, zoom),
 		    topLeftOffset = viewHalf.multiplyBy(-scale).add(currentCenterPoint)
 				  .subtract(this._map._getNewPixelOrigin(center, zoom));
-		if (Browser.any3d) {
-			setTransform(this._container, topLeftOffset, scale);
-		} else {
-			setPosition(this._container, topLeftOffset);
-		}
+		setTransform(this._container, topLeftOffset, scale);
 	},
 	_reset: function () {
 		this._update();
@@ -7126,15 +7020,12 @@
 		var b = this._bounds,
 		    container = this._container,
 		    size = b.getSize(),
-		    m = Browser.retina ? 2 : 1;
+		    m = 1;
 		setPosition(container, b.min);
 		container.width = m * size.x;
 		container.height = m * size.y;
 		container.style.width = size.x + 'px';
 		container.style.height = size.y + 'px';
-		if (Browser.retina) {
-			this._ctx.scale(2, 2);
-		}
 		this._ctx.translate(-b.min.x, -b.min.y);
 		this.fire('update');
 	},
@@ -7411,7 +7302,7 @@
 	}
   });
   function canvas(options) {
-	return Browser.canvas ? new Canvas(options) : null;
+	return new Canvas(options);
   }
   var vmlCreate = (function () {
 	try {
@@ -7513,7 +7404,7 @@
 		toBack(layer._container);
 	}
   };
-  var create = Browser.vml ? vmlCreate : svgCreate;
+  var create = svgCreate;
   var SVG = Renderer.extend({
 	_initContainer: function () {
 		this._container = create('svg');
@@ -7623,11 +7514,8 @@
 		toBack(layer._path);
 	}
   });
-  if (Browser.vml) {
-	SVG.include(vmlMixin);
-  }
   function svg(options) {
-	return Browser.svg || Browser.vml ? new SVG(options) : null;
+	return new SVG(options);
   }
   Map.include({
 	getRenderer: function (layer) {
@@ -8127,7 +8015,7 @@
   Map.addInitHook('addHandler', 'scrollWheelZoom', ScrollWheelZoom);
   var tapHoldDelay = 600;
   Map.mergeOptions({
-	tapHold: Browser.touchNative && Browser.safari && Browser.mobile,
+	tapHold: true,
 	tapTolerance: 15
   });
   var TapHold = Handler.extend({
@@ -8184,7 +8072,7 @@
   });
   Map.addInitHook('addHandler', 'tapHold', TapHold);
   Map.mergeOptions({
-	touchZoom: Browser.touch,
+	touchZoom: true,
 	bounceAtZoomLimits: true
   });
   var TouchZoom = Handler.extend({
@@ -8268,80 +8156,80 @@
   Map.ScrollWheelZoom = ScrollWheelZoom;
   Map.TapHold = TapHold;
   Map.TouchZoom = TouchZoom;
-  exports.Bounds = Bounds;
-  exports.Browser = Browser;
-  exports.CRS = CRS;
-  exports.Canvas = Canvas;
-  exports.Circle = Circle;
-  exports.CircleMarker = CircleMarker;
-  exports.Class = Class;
-  exports.Control = Control;
-  exports.DivIcon = DivIcon;
-  exports.DivOverlay = DivOverlay;
-  exports.DomEvent = DomEvent;
-  exports.DomUtil = DomUtil;
-  exports.Draggable = Draggable;
-  exports.Evented = Evented;
-  exports.FeatureGroup = FeatureGroup;
-  exports.GeoJSON = GeoJSON;
-  exports.GridLayer = GridLayer;
-  exports.Handler = Handler;
-  exports.Icon = Icon;
-  exports.ImageOverlay = ImageOverlay;
-  exports.LatLng = LatLng;
-  exports.LatLngBounds = LatLngBounds;
-  exports.Layer = Layer;
-  exports.LayerGroup = LayerGroup;
-  exports.LineUtil = LineUtil;
-  exports.Map = Map;
-  exports.Marker = Marker;
-  exports.Mixin = Mixin;
-  exports.Path = Path;
-  exports.Point = Point;
-  exports.PolyUtil = PolyUtil;
-  exports.Polygon = Polygon;
-  exports.Polyline = Polyline;
-  exports.Popup = Popup;
-  exports.PosAnimation = PosAnimation;
-  exports.Projection = index;
-  exports.Rectangle = Rectangle;
-  exports.Renderer = Renderer;
-  exports.SVG = SVG;
-  exports.SVGOverlay = SVGOverlay;
-  exports.TileLayer = TileLayer;
-  exports.Tooltip = Tooltip;
-  exports.Transformation = Transformation;
-  exports.Util = Util;
-  exports.bind = bind;
-  exports.bounds = toBounds;
-  exports.canvas = canvas;
-  exports.circle = circle;
-  exports.circleMarker = circleMarker;
-  exports.control = control;
-  exports.divIcon = divIcon;
-  exports.extend = extend;
-  exports.featureGroup = featureGroup;
-  exports.geoJSON = geoJSON;
-  exports.geoJson = geoJson;
-  exports.gridLayer = gridLayer;
-  exports.icon = icon;
-  exports.imageOverlay = imageOverlay;
-  exports.latLng = toLatLng;
-  exports.latLngBounds = toLatLngBounds;
-  exports.layerGroup = layerGroup;
-  exports.map = createMap;
-  exports.marker = marker;
-  exports.point = toPoint;
-  exports.polygon = polygon;
-  exports.polyline = polyline;
-  exports.popup = popup;
-  exports.rectangle = rectangle;
-  exports.setOptions = setOptions;
-  exports.stamp = stamp;
-  exports.svg = svg;
-  exports.svgOverlay = svgOverlay;
-  exports.tileLayer = tileLayer;
-  exports.tooltip = tooltip;
-  exports.transformation = toTransformation;
-  exports.version = version;
-}));
+  export {
+    Bounds,
+    CRS,
+    Canvas,
+    Circle,
+    CircleMarker,
+    Class,
+    Control,
+    DivIcon,
+    DivOverlay,
+    DomEvent,
+    DomUtil,
+    Draggable,
+    Evented,
+    FeatureGroup,
+    GeoJSON,
+    GridLayer,
+    Handler,
+    Icon,
+    ImageOverlay,
+    LatLng,
+    LatLngBounds,
+    Layer,
+    LayerGroup,
+    LineUtil,
+    Map,
+    Marker,
+    Mixin,
+    Path,
+    Point,
+    PolyUtil,
+    Polygon,
+    Polyline,
+    Popup,
+    PosAnimation,
+    index as Projection,
+    Rectangle,
+    Renderer,
+    SVG,
+    SVGOverlay,
+    TileLayer,
+    Tooltip,
+    Transformation,
+    Util,
+    bind,
+    toBounds as bounds,
+    canvas,
+    circle,
+    circleMarker,
+    control,
+    divIcon,
+    extend,
+    featureGroup,
+    geoJSON,
+    geoJson,
+    gridLayer,
+    icon,
+    imageOverlay,
+    toLatLng as latLng,
+    toLatLngBounds as latLngBounds,
+    layerGroup,
+    createMap as map,
+    marker,
+    toPoint as point,
+    polygon,
+    polyline,
+    popup,
+    rectangle,
+    setOptions,
+    stamp,
+    svg,
+    svgOverlay,
+    tileLayer,
+    tooltip,
+    toTransformation as transformation,
+    version
+  };
