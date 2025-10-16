@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atlas.js — Rotatable Full-Page Map</title>
+  <link rel="stylesheet" href="./Atlas.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body, #map-container { width: 100%; height: 100%; overflow: hidden; }
+    #map { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="map-container">
+    <canvas id="map"></canvas>
+    <div id="coords" aria-live="polite"></div>
+    <div id="attribution"></div>
+  </div>
+
+  <!-- Load your library -->
+  <script src="./Atlas_before_refactoring.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize map
+      const map = new Atlas("map", {
+        center: { lat: 34.0209, lon: -6.8416 }, // Rabat, Morocco
+        zoom: 12
+      });
+
+      // Add OpenStreetMap tiles
+      const subdomains = ['a', 'b', 'c'];
+      const randomSubdomain = subdomains[Math.floor(Math.random() * subdomains.length)];
+      const osmLayer = new TileLayer(
+        `https://${randomSubdomain}.tile.openstreetmap.org/{z}/{x}/{y}.png`,
+        {
+          minZoom: 0,
+          maxZoom: 19,
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+          background: "#e6e6e6",
+          supportsRetina: true,
+          maxCacheSize: 500
+        }
+      );
+      map.setBaseLayer(osmLayer);
+
+      // === ADD ROTATION SUPPORT ===
+      // 1. Compass Control (auto-shows when bearing ≠ 0)
+      map.addControl(new CompassControl({ position: 'top-left' }));
+
+      // 2. Ensure rotation handlers are active
+      //    - TouchZoomRotateHandler (pinch-to-rotate) is auto-enabled
+      //    - Keyboard 'r'/'l' keys rotate by 15° (already in KeyboardPanHandler)
+
+      // Optional: Add a draggable marker
+      const marker = new AtlasMarker({ lat: 34.0209, lon: -6.8416 }, { draggable: true })
+        .addTo(map)
+        .bindPopup('<b>Atlas.js</b><br>Rotation enabled! 🔄').openPopup();
+
+      // Handle window resize
+      window.addEventListener('resize', () => map.invalidateSize());
+    });
+  </script>
+</body>
+</html>
