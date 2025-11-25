@@ -35,7 +35,7 @@
   }
   var lastId = 0;
   function stamp(obj) {
-	if (!('_atlas_id' in obj)) {
+	if (!obj.hasOwnProperty('_atlas_id')) {
 		obj['_atlas_id'] = ++lastId;
 	}
 	return obj._atlas_id;
